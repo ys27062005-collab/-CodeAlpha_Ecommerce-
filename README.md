@@ -28,6 +28,7 @@ CLIENT_URL
 Terminal :-
    
    npm install
+   
    npm run dev
 
 
