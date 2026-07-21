@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Navbar from "@/app/components/Navbar";
+import { normalizeOrdersPayload } from "@/lib/orders";
 
 export default function OrdersPage() {
   const { data: session, status } = useSession();
@@ -25,7 +26,7 @@ export default function OrdersPage() {
       const res = await fetch(`/api/orders?userId=${session.user.id}`);
       if (res.ok) {
         const data = await res.json();
-        setOrders(data.orders || data);
+        setOrders(normalizeOrdersPayload(data));
       }
     } catch (error) {
       console.error("Error fetching orders:", error);

@@ -4,6 +4,7 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Navbar from "@/app/components/Navbar";
+import { normalizeOrdersPayload } from "@/lib/orders";
 
 export default function ProfilePage() {
   const { data: session, status } = useSession();
@@ -26,7 +27,8 @@ export default function ProfilePage() {
       const res = await fetch(`/api/orders?userId=${session.user.id}`);
       if (res.ok) {
         const data = await res.json();
-        setOrders(data.slice(0, 5)); // Show only last 5 orders
+        const normalizedOrders = normalizeOrdersPayload(data);
+        setOrders(normalizedOrders.slice(0, 5)); // Show only last 5 orders
       }
     } catch (error) {
       console.error("Error fetching orders:", error);
