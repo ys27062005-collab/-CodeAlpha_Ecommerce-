@@ -25,16 +25,11 @@ CLIENT_URL
 #Rebuild the container from the Command Palette with "Dev Containers: Rebuild Container".
 
 #Start the app:
-#terminal 1:
-   cd server
+Terminal :-
+   
    npm install
    npm run dev
 
 
-#terminal 2:
-   cd client
-   npm install
-   npm run dev
-# this commond run on two terminal 
   
 
