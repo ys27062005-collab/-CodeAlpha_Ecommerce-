@@ -23,13 +23,16 @@ export default function Home() {
   const fetchProducts = () => {
     setLoading(true);
     fetch("/api/products")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) return res.text().then((t) => { throw new Error(t || res.statusText); });
+        return res.json();
+      })
       .then((data) => {
         setProducts(data);
         setLoading(false);
       })
       .catch((err) => {
-        console.error(err);
+        console.error("Error fetching products:", err);
         setLoading(false);
       });
   };

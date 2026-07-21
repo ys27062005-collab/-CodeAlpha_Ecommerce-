@@ -22,7 +22,10 @@ export default function ProductsPage() {
 
   useEffect(() => {
     fetch("/api/products")
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) return res.text().then((t) => { throw new Error(t || res.statusText); });
+        return res.json();
+      })
       .then((data) => {
         setProducts(data);
         setLoading(false);
