@@ -1,0 +1,10 @@
+{
+  "name": "code-alpha-ecom-workspace",
+  "private": true,
+  "scripts": {
+    "dev": "npm --prefix code-alpha-ecom run dev",
+    "build": "npm --prefix code-alpha-ecom run build",
+    "start": "npm --prefix code-alpha-ecom run start",
+    "lint": "npm --prefix code-alpha-ecom run lint"
+  }
+}
